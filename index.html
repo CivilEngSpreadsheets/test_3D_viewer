@@ -1,42 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IFC.js 3D Viewer</title>
-  <style>
-    html, body { margin: 0; height: 100%; overflow: hidden; }
-    #viewer-container { width: 100vw; height: 100vh; }
-  </style>
-  <script type="module">
-    import {
-      SimpleViewerApp,
-      DefaultIfcLoader
-    } from "https://cdn.jsdelivr.net/npm/@thatopen/components@latest";
-
-    window.onload = async () => {
-      const viewer = new SimpleViewerApp({
-        container: document.getElementById("viewer-container"),
-        loader: new DefaultIfcLoader(),
-      });
-
-      const urlParams = new URLSearchParams(window.location.search);
-      const ifcPath = urlParams.get("model") || "https://civilengspreadsheets.github.io/test_3D_viewer/structure.ifc";
-
-      try {
-        await viewer.loadIfcUrl(ifcPath);
-      } catch (err) {
-        console.error("Could not load IFC model:", err);
-        alert("Could not load IFC model. Check console for details.");
+  <head>
+    <meta charset="UTF-8" />
+    <title>IFC Viewer with Engine Components</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
       }
-    };
-  </script>
-</head>
-<body>
-  <div id="viewer-container"></div>
-</body>
-</html>
+      #viewer-container {
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+    <script type="module">
+      import {
+        SimpleViewerApp,
+        DefaultIfcLoader,
+      } from "https://cdn.jsdelivr.net/npm/@thatopen/components@latest";
 
+      window.onload = async () => {
+        const viewer = new SimpleViewerApp({
+          container: document.getElementById("viewer-container"),
+          loader: new DefaultIfcLoader(),
+        });
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const ifcPath = urlParams.get("model") || "https://civilengspreadsheets.github.io/test_3D_viewer/structure.ifc";
+
+        try {
+          await viewer.loadIfcUrl(ifcPath);
+        } catch (err) {
+          console.error("Could not load IFC model:", err);
+          alert("Could not load IFC model. Check console for details.");
+        }
+      };
+    </script>
+  </head>
+  <body>
     <div id="viewer-container"></div>
   </body>
 </html>
+
