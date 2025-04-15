@@ -17,7 +17,7 @@
         });
 
         const urlParams = new URLSearchParams(window.location.search);
-        const ifcPath = urlParams.get("model") || "structure.ifc";
+        const ifcPath = urlParams.get("model") || "https://civilengspreadsheets.github.io/test_3D_viewer/structure.ifc";
         const expressID = urlParams.get("id");
 
         const model = await viewer.loadIfcUrl(ifcPath);
