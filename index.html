@@ -30,7 +30,7 @@
     });
 
     const urlParams = new URLSearchParams(window.location.search);
-    const modelUrl = urlParams.get("model") || "https://thatopen.github.io/engine_components/assets/duplex.ifc"; // fallback model
+    const modelUrl = urlParams.get("model") || "structure.ifc"; // fallback model
     try {
       await viewer.loadIfcUrl(modelUrl);
     } catch (err) {
