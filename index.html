@@ -17,28 +17,28 @@
       }
     </style>
     <script type="module">
-      import {
-        SimpleViewerApp,
-        DefaultIfcLoader,
-      } from "https://cdn.jsdelivr.net/npm/@thatopen/components@latest";
+  import {
+    SimpleViewerApp,
+    DefaultIfcLoader,
+  } from "https://cdn.thatopen.com/engine-components/latest/engine-components.min.js";
 
-      window.onload = async () => {
-        const viewer = new SimpleViewerApp({
-          container: document.getElementById("viewer-container"),
-          loader: new DefaultIfcLoader(),
-        });
+  window.onload = async () => {
+    const viewer = new SimpleViewerApp({
+      container: document.getElementById("viewer-container"),
+      loader: new DefaultIfcLoader(),
+    });
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const ifcPath = urlParams.get("model") || "https://civilengspreadsheets.github.io/test_3D_viewer/structure.ifc";
+    const urlParams = new URLSearchParams(window.location.search);
+    const ifcPath = urlParams.get("model") || "structure.ifc";
 
-        try {
-          await viewer.loadIfcUrl(ifcPath);
-        } catch (err) {
-          console.error("Could not load IFC model:", err);
-          alert("Could not load IFC model. Check console for details.");
-        }
-      };
-    </script>
+    try {
+      await viewer.loadIfcUrl(ifcPath);
+    } catch (err) {
+      console.error("Could not load IFC model:", err);
+      alert("Could not load IFC model. Check console for details.");
+    }
+  };
+</script>
   </head>
   <body>
     <div id="viewer-container"></div>
