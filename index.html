@@ -20,28 +20,28 @@
   import {
     SimpleViewerApp,
     DefaultIfcLoader,
-  } from "https://cdn.thatopen.com/engine-components/latest/engine-components.min.js";
+  } from "https://cdn.thatopen.com/engine-components/latest/engine-components.min.mjs";
 
   window.onload = async () => {
+    const container = document.getElementById("viewer-container");
     const viewer = new SimpleViewerApp({
-      container: document.getElementById("viewer-container"),
+      container,
       loader: new DefaultIfcLoader(),
     });
 
     const urlParams = new URLSearchParams(window.location.search);
-    const ifcPath = urlParams.get("model") || "structure.ifc";
-
+    const modelUrl = urlParams.get("model") || "https://thatopen.github.io/engine_components/assets/duplex.ifc"; // fallback model
     try {
-      await viewer.loadIfcUrl(ifcPath);
+      await viewer.loadIfcUrl(modelUrl);
     } catch (err) {
-      console.error("Could not load IFC model:", err);
-      alert("Could not load IFC model. Check console for details.");
+      console.error("Failed to load IFC model:", err);
     }
   };
 </script>
   </head>
   <body>
-    <div id="viewer-container"></div>
+    <div id="viewer-container" style="width: 100vw; height: 100vh;"></div>
+
   </body>
 </html>
 
